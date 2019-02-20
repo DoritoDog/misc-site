@@ -20,7 +20,8 @@
   <div class="right-navbar">
     <ul>
       <li><a class="text-orange" href="index.php">Home</a></li>
-      <li><a class="text-orange" href="index.php">Topics</a></li>
+      <li><a class="text-orange" href="new_discussion.php">New Topic</a></li>
+      <li><a class="text-orange" href="search.php">Search</a></li>
     </ul>
   </div>
 </div>
@@ -28,6 +29,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
+$string = file_get_contents("env.json");
+$env = json_decode($string);
 $password = "";
 
 try {

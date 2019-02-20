@@ -11,24 +11,20 @@
 </head>
 <body>
 
-<header>
-  <div class="navbar-container">
-    <div class="website-name">
-      <h2>Discussio.club</h2>
-      <h6>Anonymous discussion forum</h6>
-    </div>
-
-    <div class="right-navbar">
-      <ul>
-        <li><a class="text-orange" href="index.php">Topics</a></li>
-        <li><a class="text-orange" href="new_discussion.php">New Topic</a></li>
-        <li><a class="text-orange" href="search.php">Search</a></li>
-      </ul>
-    </div>
+<div class="navbar-container">
+  <div class="website-name">
+    <h2>Discussio.club</h2>
+    <h6>Anonymous discussion forum</h6>
   </div>
-</header>
 
-<!-- <h2 class="text-center pt-3">Welcome to Discussio.club, the online discussion forum!</h2> -->
+  <div class="right-navbar">
+    <ul>
+      <li><a class="text-orange" href="index.php">Home</a></li>
+      <li><a class="text-orange" href="new_discussion.php">New Topic</a></li>
+      <li><a class="text-orange" href="search.php">Search</a></li>
+    </ul>
+  </div>
+</div>
 
 <?php
 $servername = "localhost";
@@ -40,16 +36,18 @@ try {
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $sql = "SELECT * FROM discussion ORDER BY modified ASC;";
-  $PDOStatement = $conn->query($sql, PDO::FETCH_ASSOC);
-  $rows = $PDOStatement->fetchAll();
-?>
+  if (isset($_GET['q'])) {
+    $search_crit = $_GET['q'];
+    $sql = "SELECT * FROM discussion WHERE headline LIKE '%$search_crit%' ORDER BY modified ASC;";
+    $PDOStatement = $conn->query($sql, PDO::FETCH_ASSOC);
+    $rows = $PDOStatement->fetchAll();
+  ?>
 
-<div class="btn btn-dark text-center m-3">
-  <a class="text-white" href="new_discussion.php">Create a new topic</a>
-</div>
+  <form action="" method="get" class="form-group">
+    <input type="text" name="q" class="form-control search-field" placeholder="Search topics...">
+  </form>
 
-<table class="table mx-auto topics-table">
+  <table class="table mx-auto topics-table">
     <thead>
       <tr class="light-gray">
         <th>Topics</th>
@@ -100,8 +98,8 @@ try {
 </table>
 
 <?php
-}
-catch(PDOException $e) {
+  }
+} catch (PDOException $e) {
 
 }
 ?>

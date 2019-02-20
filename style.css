@@ -92,3 +92,8 @@
 .comment {
   text-align: center;
 }
+
+.search-field {
+  width: 80%;
+  margin: auto;
+}
