@@ -35,7 +35,7 @@ $servername = "localhost";
 $username = "root";
 $string = file_get_contents("env.json");
 $env = json_decode($string);
-$password = $env['db_pass'];
+$password = $env->db_pass;
 
 try {
   $conn = new PDO("mysql:host=$servername;dbname=discussion_forum", $username, $password);
