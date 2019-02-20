@@ -49,7 +49,7 @@ try {
 
 <h3 class="text-center mt-3">New Discussion</h3>
 
-<form action="new_discussion" method="POST">
+<form action="new_discussion.php" method="POST">
 <div class="form-group mt-5 new-discussion p-3">
   <select name="category" class="mt-3 form-control">
     <?php
