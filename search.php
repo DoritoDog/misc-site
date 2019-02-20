@@ -26,6 +26,10 @@
   </div>
 </div>
 
+<form action="" method="get" class="form-group">
+  <input type="text" name="q" class="form-control search-field" placeholder="Search topics...">
+</form>
+
 <?php
 $servername = "localhost";
 $username = "root";
@@ -44,10 +48,6 @@ try {
     $PDOStatement = $conn->query($sql, PDO::FETCH_ASSOC);
     $rows = $PDOStatement->fetchAll();
   ?>
-
-  <form action="" method="get" class="form-group">
-    <input type="text" name="q" class="form-control search-field" placeholder="Search topics...">
-  </form>
 
   <table class="table mx-auto topics-table">
     <thead>
