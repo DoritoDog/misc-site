@@ -38,7 +38,7 @@ try {
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $sql = "SELECT * FROM category";
+  $sql = "SELECT * FROM category ORDER BY category_name";
   $PDOStatement = $conn->query($sql, PDO::FETCH_ASSOC);
   $categories = $PDOStatement->fetchAll();
   

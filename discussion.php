@@ -84,7 +84,7 @@ catch(PDOException $e) {
 
 <form action="" method="POST">
 <div class="form-group" class="mt-5">
-  <input type="text" name="name" class="form-control" placeholder="Leave your own comment..." 
+  <input type="textarea" name="name" class="form-control" placeholder="Leave your own comment..." 
   autocomplete="off">
   <input type="submit" class="btn btn-dark">
 </div>
