@@ -45,7 +45,10 @@ try {
   if (isset($_POST['name'])) {
     $content = $_POST['name'];
     $id = $_GET['id'];
-    $conn->exec("INSERT INTO comment (content, discussion_id) VALUES ('".$content."', '".$id."')");
+    $stmt = $conn->prepare("INSERT INTO comment (content, discussion_id) VALUES (:content, :id)");
+    $stmt->bindParam(':content', $content);
+    $stmt->bindParam('id', $id);
+    $stmt->execute();
     ?>
     <script>window.location = window.location.href;</script>
     <?php
@@ -77,15 +80,15 @@ try {
   }
 }
 catch(PDOException $e) {
-
+var_dump($e);
 }
 ?>
 </ul>
 
 <form action="" method="POST">
 <div class="form-group" class="mt-5">
-  <input type="textarea" name="name" class="form-control" placeholder="Leave your own comment..." 
-  autocomplete="off">
+  <textarea name="name" class="form-control" placeholder="Leave your own comment..." 
+  autocomplete="off" rows="4"></textarea>
   <input type="submit" class="btn btn-dark">
 </div>
 </form>
